@@ -75,7 +75,7 @@ __enhancd::path::go_upstairs()
 
 __enhancd::path::scan_cwd()
 {
-    find "${1:-$PWD}" -maxdepth 1 -type d \
+    command fd --full-path "${1:-$PWD}" --max-depth 2  --type d -H -I -a \
         | __enhancd::utils::grep -v "\/\."
 }
 

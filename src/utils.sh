@@ -21,7 +21,7 @@ __enhancd::utils::grep()
     else
         cat <&0
     fi \
-        | command grep -E "$@" 2>/dev/null
+        | command rg --fixed-strings "$@" 2>/dev/null
 }
 
 # __enhancd::utils::sed replaces 1st arg with 2nd arg
