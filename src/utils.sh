@@ -101,8 +101,8 @@ __enhancd::utils::has()
 # and writes the result to the standard output
 __enhancd::utils::nl()
 {
-    # d in awk's argument is a delimiter
-    awk -v d="${1:-": "}" '
+    # d in mawk's argument is a delimiter
+    mawk -v d="${1:-": "}" '
     BEGIN {
         i = 1
     }
