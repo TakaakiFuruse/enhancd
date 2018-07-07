@@ -37,7 +37,7 @@ __enhancd::filter::reverse()
     else
         cat <&0
     fi \
-        | mawk -f "$ENHANCD_ROOT/src/share/reverse.mawk" \
+        | mawk -f "$ENHANCD_ROOT/src/share/reverse.awk" \
         2>/dev/null
 }
 
@@ -48,7 +48,7 @@ __enhancd::filter::fuzzy()
     else
         if [[ $ENHANCD_USE_FUZZY_MATCH == 1 ]]; then
             mawk \
-                -f "$ENHANCD_ROOT/src/share/fuzzy.mawk" \
+                -f "$ENHANCD_ROOT/src/share/fuzzy.awk" \
                 -v search_string="$1"
         else
             # Case-insensitive (don't use fuzzy searhing)

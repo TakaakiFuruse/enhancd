@@ -28,7 +28,7 @@ __enhancd::path::to_abspath()
     else
         # If there are no duplicate directory name
         mawk \
-            -f "$ENHANCD_ROOT/src/share/to_abspath.mawk" \
+            -f "$ENHANCD_ROOT/src/share/to_abspath.awk" \
             -v cwd="$cwd" \
             -v dir="$dir"
     fi
@@ -38,7 +38,7 @@ __enhancd::path::to_abspath()
 __enhancd::path::split()
 {
     mawk \
-        -f "$ENHANCD_ROOT/src/share/split.mawk" \
+        -f "$ENHANCD_ROOT/src/share/split.awk" \
         -v arg="${1:-$PWD}" #-v show_fullpath="$ENHANCD_DOT_SHOW_FULLPATH"
 }
 
@@ -46,7 +46,7 @@ __enhancd::path::split()
 __enhancd::path::step_by_step()
 {
     mawk \
-        -f "$ENHANCD_ROOT/src/share/step_by_step.mawk" \
+        -f "$ENHANCD_ROOT/src/share/step_by_step.awk" \
         -v dir="${1:-$PWD}"
 }
 
@@ -65,7 +65,7 @@ __enhancd::path::go_upstairs()
 
     # uniq is the variable that checks whether there is
     # the duplicate directory in the PWD environment variable
-    if __enhancd::path::split "$dir" | mawk -f "$ENHANCD_ROOT/src/share/has_dup_lines.mawk"; then
+    if __enhancd::path::split "$dir" | mawk -f "$ENHANCD_ROOT/src/share/has_dup_lines.awk"; then
         __enhancd::path::split "$dir" \
             | mawk '{ printf("%d: %s\n", NR, $0); }'
     else
