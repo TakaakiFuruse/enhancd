@@ -16,7 +16,7 @@ __enhancd::filter::join()
         cat "$1"
     else
         cat <&0
-    fi | mawk 'a[$0]++' 2>/dev/null
+    fi | $ENHANCD_AWK 'a[$0]++' 2>/dev/null
 }
 
 # __enhancd::filter::unique uniques a stdin contents
@@ -26,7 +26,7 @@ __enhancd::filter::unique()
         cat "$1"
     else
         cat <&0
-    fi | mawk '!a[$0]++' 2>/dev/null
+    fi | $ENHANCD_AWK '!a[$0]++' 2>/dev/null
 }
 
 # __enhancd::filter::reverse reverses a stdin contents
@@ -37,7 +37,7 @@ __enhancd::filter::reverse()
     else
         cat <&0
     fi \
-        | mawk -f "$ENHANCD_ROOT/src/share/reverse.awk" \
+        | $ENHANCD_AWK -f "$ENHANCD_ROOT/src/share/reverse.awk" \
         2>/dev/null
 }
 
@@ -47,12 +47,12 @@ __enhancd::filter::fuzzy()
         cat <&0
     else
         if [[ $ENHANCD_USE_FUZZY_MATCH == 1 ]]; then
-            mawk \
+            $ENHANCD_AWK \
                 -f "$ENHANCD_ROOT/src/share/fuzzy.awk" \
                 -v search_string="$1"
         else
             # Case-insensitive (don't use fuzzy searhing)
-            mawk '$0 ~ /\/.?'"$1"'[^\/]*$/{print $0}' 2>/dev/null
+            $ENHANCD_AWK '$0 ~ /\/.?'"$1"'[^\/]*$/{print $0}' 2>/dev/null
         fi
     fi
 }

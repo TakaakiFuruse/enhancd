@@ -112,7 +112,7 @@ $ cd
 > _
 ```
 
-The ENHANCD_FILTER variable is specified as a list of one or more visual filter command such as [this](#requirements) separated by colon (`:`) characters.
+The ENHANCD_FILTER variable is specified as a list of one or more visual filter command such as [this](#heartbeat-requirements) separated by colon (`:`) characters.
 
 It is likely the only environment variable you'll need to set when starting enhancd.
 
@@ -352,6 +352,16 @@ If you set this variable any but `-`, it gives you the _hyphen_ behavior with th
 Then `cd -` changes current directory to `$OLDPWD` without interactive filter.
 
 In other words, you can keep original `cd -` behavior by this option.
+
+</details>
+
+<details>
+<summary><strong><code>ENHANCD_HYPHEN_NUM</code></strong></summary>
+
+You can customize the number of rows by "cd -" 
+Default is `10`.
+
+This is passed to `head` comand as `-n` option.
 
 </details>
 

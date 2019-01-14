@@ -4,7 +4,7 @@ __enhancd::arguments::option()
 
     cat "$ENHANCD_ROOT/src/custom/config.ltsv" \
         | __enhancd::utils::grep -v '^(//|#)' \
-        | mawk -F$'\t' '/:'"$opt"'\t/{print $4}' \
+        | $ENHANCD_AWK -F$'\t' '/:'"$opt"'\t/{print $4}' \
         | cut -d: -f2 \
         | read action
 
@@ -33,7 +33,7 @@ __enhancd::arguments::hyphen()
 
     __enhancd::history::list "$1" \
         | __enhancd::utils::grep -vx "$HOME" \
-        | head \
+        | head -n "$ENHANCD_HYPHEN_NUM" \
         | __enhancd::filter::interactive
 }
 
